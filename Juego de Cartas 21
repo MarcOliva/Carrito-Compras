@@ -1,0 +1,68 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+
+int main() {
+	int fin, pinta, num, suma, pc_num, pc;
+	srand(time(NULL));
+	printf("EL JUEGO DE LAS 21,LA SUMA DE LAS CARTAS DEBE SER 21,\n");
+	printf("SI SU SUMA ES MAS ALTA QUE LA DE LA COMPUTADORA, ENTONCES UD GANA EL JUEGO,\n");
+	printf("SI SU SUMA EXCEDE LOS 21, PIERDE DE INMEDIATO EL JUEGO.\n\n");
+	fin = 0;
+	suma = 0;
+	while (fin != 2) {
+		num = (rand() % 10) + 1;
+		printf("%d ", num);
+		pinta = (rand() % 4) + 1;
+		if (pinta == 1) {
+			printf("de Oro\n\n");
+		}
+		if (pinta == 2) {
+			printf("de Basto\n\n");
+		}
+		if (pinta == 3) {
+			printf("de Copa\n\n");
+		}
+		if (pinta == 4) {
+			printf("de Espada\n\n");
+		}
+
+		suma = suma + num;
+		printf("LA SUMA ES DE: %d\n\n", suma);
+		printf("DESEA PEDIR OTRA CARTA? \nSI>>MARQUE 1\nNO>>MARQUE 2\n\n");
+		scanf("%d", &fin);
+		if (suma>21) {
+			printf("HA PERDIDO EL JUEGO!\nLA SUMA EXCEDE LOS 21\n\n");
+			fin = 2;
+		}
+	}
+
+	pc = (rand() % 7) + 1;
+	pc_num = pc + 16;
+
+	//COMPROBAR QUE EL JUGARDOR1 TENGA MENOS DE 21
+	if (pc_num>21) {
+		printf("PUNTAJE JUGADOR: %d\nPUNTAJE PC: %d\n", suma, pc_num);
+		printf("HA GANADO EL JUEGO!\n\n");
+	}
+
+
+	else if (suma <= 21) {
+		if (suma>pc_num) {
+			printf("PUNTAJE JUGADOR: %d\nPUNTAJE PC: %d\n", suma, pc_num);
+			printf("HA GANADO EL JUEGO!\n\n");
+		}
+		if (suma == pc_num) {
+			printf("PUNTAJE JUGADOR: %d\nPUNTAJE PC: %d\n", suma, pc_num);
+			printf("JUEGO EMPATADO!!\n\n");
+		}
+		if (suma<pc_num) {
+			printf("PUNTAJE JUGADOR: %d\nPUNTAJE PC: %d\n", suma, pc_num);
+			printf("HA PERDIDO EL JUEGO!\n\n");
+		}
+	}
+
+
+	printf("Copyright by gORY\n");
+	system("pause");
+}
