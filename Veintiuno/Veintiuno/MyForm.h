@@ -589,6 +589,7 @@ private: System::Void btnSI_Click(System::Object^  sender, System::EventArgs^  e
 			MessageBox::Show("    PERDISTE"
 				+ " \n Tu total fue de :" + txtTotal->Text
 			);
+
 			int dinero = Convert::ToInt32(txtDineroActual->Text) - Convert::ToInt32(txtApuesta->Text);
 			txtDineroActual->Text = dinero.ToString();
 			obj->Limpiar();

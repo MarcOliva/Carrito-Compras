@@ -1,4 +1,4 @@
 ﻿  MyForm.cpp
-c:\users\marc\documents\veintiuno\veintiuno\veintiuno\clista.h(142): warning C4715: 'CLista<Personaje *>::obtenerPos': no todas las rutas de acceso de control devuelven un valor
+c:\users\marc\documents\veintiuno\veintiuno\veintiuno\clista.h(141): warning C4715: 'CLista<Personaje *>::obtenerPos': no todas las rutas de acceso de control devuelven un valor
   MyForm.obj : se encontró un módulo MSIL; vinculación incremental deshabilitada para MSIL; ejecutando vínculo completo
   Veintiuno.vcxproj -> C:\Users\Marc\Documents\Veintiuno\Veintiuno\Debug\Veintiuno.exe

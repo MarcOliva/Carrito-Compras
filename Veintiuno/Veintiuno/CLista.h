@@ -36,7 +36,6 @@ public:
 		if (posi == 0)
 		{
 			agregarInicial(elem);
-			lengh++;
 		}
 		else {
 			if (posi > 0)
@@ -145,7 +144,8 @@ public:
 	}
 	
 	void limpiarLista() {
-
+		ini = nullptr;
+		lengh = 0;
 	}
 
 };
