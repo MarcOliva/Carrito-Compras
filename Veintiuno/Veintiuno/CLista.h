@@ -120,7 +120,6 @@ public:
 		return ini->value;
 	}
 	T obtenerPos(int posi) {
-		if (posi > lengh)return 0;
 		if (posi == 0)
 		{
 			return obtenerInicial();
@@ -130,7 +129,7 @@ public:
 			if (posi > 0)
 			{
 				Nodo* aux = ini;
-				for (int i = 1; i < posi; i++)
+				for (int i = 1; i <= posi; i++)
 				{
 					aux = aux->sig;
 				}

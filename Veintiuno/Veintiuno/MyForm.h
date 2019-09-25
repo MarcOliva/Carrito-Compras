@@ -1,5 +1,6 @@
 #pragma once
 #include "CPersonaje.h"
+#include "HistorialPartidas.h"
 namespace Veintiuno {
 
 	using namespace System;
@@ -18,6 +19,10 @@ namespace Veintiuno {
 		CPersonaje *obj;
 		int cantidad_acumulada = 0;
 		int i = 0;
+	private: System::Windows::Forms::Button^  btnPartidas;
+	public:
+
+	public:
 		int aux = 0;
 		MyForm(void)
 		{
@@ -44,14 +49,14 @@ namespace Veintiuno {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::Label^  txtDineroActual;
 	protected:
 	private: System::Windows::Forms::Label^  label6;
 
 	private: System::Windows::Forms::Label^  label3;
 
 	private: System::Windows::Forms::Label^  label2;
-	private: System::Windows::Forms::Label^  label1;
+	private: System::Windows::Forms::Label^  txtDineroActual;
+
 	private: System::Windows::Forms::Label^  label4;
 	private: System::Windows::Forms::Panel^  panel2;
 	private: System::Windows::Forms::Label^  txtTotalPc;
@@ -89,13 +94,13 @@ namespace Veintiuno {
 		{
 			this->components = (gcnew System::ComponentModel::Container());
 			System::ComponentModel::ComponentResourceManager^  resources = (gcnew System::ComponentModel::ComponentResourceManager(MyForm::typeid));
-			this->txtDineroActual = (gcnew System::Windows::Forms::Label());
 			this->label6 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->label1 = (gcnew System::Windows::Forms::Label());
+			this->txtDineroActual = (gcnew System::Windows::Forms::Label());
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->panel2 = (gcnew System::Windows::Forms::Panel());
+			this->btnPartidas = (gcnew System::Windows::Forms::Button());
 			this->txtTotalPc = (gcnew System::Windows::Forms::Label());
 			this->txt = (gcnew System::Windows::Forms::Label());
 			this->btnSalir = (gcnew System::Windows::Forms::Button());
@@ -119,18 +124,6 @@ namespace Veintiuno {
 			this->panel2->SuspendLayout();
 			this->panel1->SuspendLayout();
 			this->SuspendLayout();
-			// 
-			// txtDineroActual
-			// 
-			this->txtDineroActual->AutoSize = true;
-			this->txtDineroActual->BackColor = System::Drawing::Color::Transparent;
-			this->txtDineroActual->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
-				static_cast<System::Byte>(0)));
-			this->txtDineroActual->Location = System::Drawing::Point(66, -68);
-			this->txtDineroActual->Name = L"txtDineroActual";
-			this->txtDineroActual->Size = System::Drawing::Size(39, 20);
-			this->txtDineroActual->TabIndex = 13;
-			this->txtDineroActual->Text = L"200";
 			// 
 			// label6
 			// 
@@ -172,17 +165,17 @@ namespace Veintiuno {
 			this->label2->TabIndex = 10;
 			this->label2->Text = L"Jugador";
 			// 
-			// label1
+			// txtDineroActual
 			// 
-			this->label1->AutoSize = true;
-			this->label1->BackColor = System::Drawing::Color::Transparent;
-			this->label1->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+			this->txtDineroActual->AutoSize = true;
+			this->txtDineroActual->BackColor = System::Drawing::Color::Transparent;
+			this->txtDineroActual->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label1->Location = System::Drawing::Point(237, 17);
-			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(39, 20);
-			this->label1->TabIndex = 19;
-			this->label1->Text = L"200";
+			this->txtDineroActual->Location = System::Drawing::Point(237, 17);
+			this->txtDineroActual->Name = L"txtDineroActual";
+			this->txtDineroActual->Size = System::Drawing::Size(39, 20);
+			this->txtDineroActual->TabIndex = 19;
+			this->txtDineroActual->Text = L"200";
 			// 
 			// label4
 			// 
@@ -201,6 +194,7 @@ namespace Veintiuno {
 			// panel2
 			// 
 			this->panel2->BackColor = System::Drawing::Color::Transparent;
+			this->panel2->Controls->Add(this->btnPartidas);
 			this->panel2->Controls->Add(this->txtTotalPc);
 			this->panel2->Controls->Add(this->txt);
 			this->panel2->Controls->Add(this->btnSalir);
@@ -211,6 +205,18 @@ namespace Veintiuno {
 			this->panel2->Name = L"panel2";
 			this->panel2->Size = System::Drawing::Size(298, 381);
 			this->panel2->TabIndex = 18;
+			// 
+			// btnPartidas
+			// 
+			this->btnPartidas->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->btnPartidas->Location = System::Drawing::Point(7, 326);
+			this->btnPartidas->Name = L"btnPartidas";
+			this->btnPartidas->Size = System::Drawing::Size(185, 42);
+			this->btnPartidas->TabIndex = 11;
+			this->btnPartidas->Text = L"Historial de Partidas";
+			this->btnPartidas->UseVisualStyleBackColor = true;
+			this->btnPartidas->Click += gcnew System::EventHandler(this, &MyForm::btnPartidas_Click);
 			// 
 			// txtTotalPc
 			// 
@@ -239,9 +245,9 @@ namespace Veintiuno {
 			this->btnSalir->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->btnSalir->ForeColor = System::Drawing::Color::Red;
-			this->btnSalir->Location = System::Drawing::Point(224, 351);
+			this->btnSalir->Location = System::Drawing::Point(212, 327);
 			this->btnSalir->Name = L"btnSalir";
-			this->btnSalir->Size = System::Drawing::Size(71, 27);
+			this->btnSalir->Size = System::Drawing::Size(71, 42);
 			this->btnSalir->TabIndex = 6;
 			this->btnSalir->Text = L"Salir";
 			this->btnSalir->UseVisualStyleBackColor = true;
@@ -440,13 +446,12 @@ namespace Veintiuno {
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(626, 430);
-			this->Controls->Add(this->label1);
+			this->Controls->Add(this->txtDineroActual);
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->panel2);
 			this->Controls->Add(this->label7);
 			this->Controls->Add(this->panel1);
 			this->Controls->Add(this->label11);
-			this->Controls->Add(this->txtDineroActual);
 			this->Controls->Add(this->label6);
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->label2);
@@ -611,6 +616,11 @@ private: System::Void btnSI_Click(System::Object^  sender, System::EventArgs^  e
 			txtApuesta->Text = "00";
 		}
 	}
+
+}
+private: System::Void btnPartidas_Click(System::Object^  sender, System::EventArgs^  e) {
+	HistorialPartidas^ frm = gcnew HistorialPartidas;
+	frm->Show();
 
 }
 };

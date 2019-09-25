@@ -128,10 +128,15 @@
   <ItemGroup>
     <ClInclude Include="CLista.h" />
     <ClInclude Include="CPersonaje.h" />
+    <ClInclude Include="HistorialPartidas.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="MyForm.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="Partida.h" />
     <ClInclude Include="Personaje.h" />
+    <ClInclude Include="Stack.h" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -141,9 +146,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="HistorialPartidas.cpp" />
     <ClCompile Include="MyForm.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="HistorialPartidas.resx">
+      <DependentUpon>HistorialPartidas.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MyForm.resx">
       <DependentUpon>MyForm.h</DependentUpon>
     </EmbeddedResource>
