@@ -493,6 +493,8 @@ private: System::Void MyForm_Load(System::Object^  sender, System::EventArgs^  e
 	btnNO->Enabled = false;
 }
 		 void Reinicio() {
+			 aux = 0;
+			 i = 0;
 			 cantidad_acumulada = 0;
 			 cantidad_maquina = 0;
 			 lsbMaquina->Items->Clear();
