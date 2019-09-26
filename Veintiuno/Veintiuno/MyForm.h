@@ -21,6 +21,7 @@ namespace Veintiuno {
 	/// </summary>
 	public ref class MyForm : public System::Windows::Forms::Form
 	{
+
 	public:
 		CPersonaje *obj;
 		int cantidad_acumulada = 0;
@@ -40,7 +41,8 @@ namespace Veintiuno {
 			Guardados << cantidad_usuario<<" "<<cantidad_maquina<<" "<<resultado<<endl;
 
 			Guardados.close();
-		}
+		};
+		
 	public:
 		int aux = 0;
 		MyForm(void)
@@ -194,7 +196,7 @@ namespace Veintiuno {
 			this->txtDineroActual->Name = L"txtDineroActual";
 			this->txtDineroActual->Size = System::Drawing::Size(39, 20);
 			this->txtDineroActual->TabIndex = 19;
-			this->txtDineroActual->Text = L"200";
+			this->txtDineroActual->Text = L"500";
 			// 
 			// label4
 			// 
@@ -528,8 +530,10 @@ private: System::Void MyForm_Load(System::Object^  sender, System::EventArgs^  e
 			 btnNO->Enabled = false;
 
 		 }
+		 
 
 		 void GuardarPartida(int cantidad_usuario, int cantidad_maquina, string resultado) {
+			
 			 ModificarHistorial(cantidad_usuario,cantidad_maquina,resultado);
 		 }
 private: System::Void btnNO_Click(System::Object^  sender, System::EventArgs^  e) {
