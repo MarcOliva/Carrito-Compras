@@ -1,6 +1,12 @@
 #pragma once
 #include "CPersonaje.h"
 #include "HistorialPartidas.h"
+#include "Partida.h"
+#include "Pila.h"
+#include<iostream>
+#include<stdlib.h>
+#include<string.h>
+#include<fstream>
 namespace Veintiuno {
 
 	using namespace System;
@@ -22,6 +28,19 @@ namespace Veintiuno {
 	private: System::Windows::Forms::Button^  btnPartidas;
 	public:
 
+		
+		void ModificarHistorial(int cantidad_usuario, int cantidad_maquina, string resultado) {
+			ofstream Guardados;
+
+			Guardados.open("HistorialDeJuego.txt", ios::app);
+			if (Guardados.fail()) {
+				cout << "No se pudo abrir historial";
+				exit(1);
+			}
+			Guardados << cantidad_usuario<<" "<<cantidad_maquina<<" "<<resultado<<endl;
+
+			Guardados.close();
+		}
 	public:
 		int aux = 0;
 		MyForm(void)
@@ -266,13 +285,13 @@ namespace Veintiuno {
 			// 
 			// lsbMaquina
 			// 
-			this->lsbMaquina->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->lsbMaquina->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->lsbMaquina->FormattingEnabled = true;
-			this->lsbMaquina->ItemHeight = 20;
+			this->lsbMaquina->ItemHeight = 24;
 			this->lsbMaquina->Location = System::Drawing::Point(7, 54);
 			this->lsbMaquina->Name = L"lsbMaquina";
-			this->lsbMaquina->Size = System::Drawing::Size(276, 204);
+			this->lsbMaquina->Size = System::Drawing::Size(276, 196);
 			this->lsbMaquina->TabIndex = 4;
 			// 
 			// label5
@@ -340,7 +359,7 @@ namespace Veintiuno {
 			// 
 			// btnNO
 			// 
-			this->btnNO->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->btnNO->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->btnNO->Location = System::Drawing::Point(164, 327);
 			this->btnNO->Name = L"btnNO";
@@ -363,13 +382,13 @@ namespace Veintiuno {
 			// 
 			// lsbPersonaje
 			// 
-			this->lsbPersonaje->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 12, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->lsbPersonaje->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 14.25F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->lsbPersonaje->FormattingEnabled = true;
-			this->lsbPersonaje->ItemHeight = 20;
+			this->lsbPersonaje->ItemHeight = 24;
 			this->lsbPersonaje->Location = System::Drawing::Point(7, 54);
 			this->lsbPersonaje->Name = L"lsbPersonaje";
-			this->lsbPersonaje->Size = System::Drawing::Size(276, 204);
+			this->lsbPersonaje->Size = System::Drawing::Size(276, 196);
 			this->lsbPersonaje->TabIndex = 4;
 			// 
 			// label10
@@ -396,7 +415,7 @@ namespace Veintiuno {
 			// 
 			// btnSI
 			// 
-			this->btnSI->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 10, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			this->btnSI->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Bold, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
 			this->btnSI->Location = System::Drawing::Point(38, 327);
 			this->btnSI->Name = L"btnSI";
@@ -445,6 +464,7 @@ namespace Veintiuno {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
+			this->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"$this.BackgroundImage")));
 			this->ClientSize = System::Drawing::Size(626, 430);
 			this->Controls->Add(this->txtDineroActual);
 			this->Controls->Add(this->label4);
@@ -508,6 +528,10 @@ private: System::Void MyForm_Load(System::Object^  sender, System::EventArgs^  e
 			 btnNO->Enabled = false;
 
 		 }
+
+		 void GuardarPartida(int cantidad_usuario, int cantidad_maquina, string resultado) {
+			 ModificarHistorial(cantidad_usuario,cantidad_maquina,resultado);
+		 }
 private: System::Void btnNO_Click(System::Object^  sender, System::EventArgs^  e) {
 	btnSI->Enabled = false;
 	btnNO->Enabled = false;
@@ -536,19 +560,28 @@ private: System::Void Maquina_Tick(System::Object^  sender, System::EventArgs^  
 		aux = cantidad_maquina;
 		if (cantidad_maquina != cantidad_acumulada) {
 			if (cantidad_maquina > cantidad_acumulada) {
+				GuardarPartida(cantidad_acumulada, cantidad_maquina, "Perdida");
 				Maquina->Enabled = false;
-				MessageBox::Show("   GANA LA CASA");
+				MessageBox::Show("  PERDISTE ! , GANA LA CASA");
 				int dinero = Convert::ToInt32(txtDineroActual->Text) - Convert::ToInt32(txtApuesta->Text);
 				txtDineroActual->Text = dinero.ToString();
+				//cantidad_maquina 
+				//cantidad_acumulada
+				//resultado = PIERDES
+				
 				Reinicio();
 
 
 			}
 			else {
+				GuardarPartida(cantidad_acumulada, cantidad_maquina, "Ganada");
 				Maquina->Enabled = false;
 				MessageBox::Show("   GANASTE");
 				int dinero = Convert::ToInt32(txtDineroActual->Text) + Convert::ToInt32(txtApuesta->Text);
 				txtDineroActual->Text = dinero.ToString();
+				//cantidad_maquina 
+				//cantidad_acumulada
+				//resultado = GANAS				
 				Reinicio();
 
 			}
@@ -556,8 +589,9 @@ private: System::Void Maquina_Tick(System::Object^  sender, System::EventArgs^  
 
 		}
 		else {
+			GuardarPartida(cantidad_acumulada, cantidad_maquina, "Empate");
 			Maquina->Enabled = false;
-			MessageBox::Show("   EMPATES");
+			MessageBox::Show("   EMPATES");			
 			Reinicio();
 
 		}
@@ -591,6 +625,7 @@ private: System::Void btnSI_Click(System::Object^  sender, System::EventArgs^  e
 			lsbPersonaje->Items->Add("Carta con Numero :" + Aux.obtenerPos(i)->GetCarta().ToString());
 		}
 		if (cantidad_acumulada > 21) {
+			GuardarPartida(cantidad_acumulada, 0, "Perdida");
 			btnSI->Enabled = false;
 			btnNO->Enabled = false;
 			MessageBox::Show("    PERDISTE"

@@ -136,7 +136,7 @@
     </ClInclude>
     <ClInclude Include="Partida.h" />
     <ClInclude Include="Personaje.h" />
-    <ClInclude Include="Stack.h" />
+    <ClInclude Include="Pila.h" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="System" />

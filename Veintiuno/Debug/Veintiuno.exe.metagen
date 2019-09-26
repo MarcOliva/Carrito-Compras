@@ -18,6 +18,8 @@ Assembly System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c5619
 Class Veintiuno.HistorialPartidas: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Methods:
+    LeerHistorial(): PrivateScope, Public, HideBySig
 Class Veintiuno.MyForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -26,3 +28,5 @@ Class Veintiuno.MyForm: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
     Int32 cantidad_acumulada : Public
     Int32 i : Public
     Int32 aux : Public
+  Methods:
+    ModificarHistorial(Int32, Int32, basic_string<char\,std::char_traits<char>\,std::allocator<char> >*): PrivateScope, Public, HideBySig

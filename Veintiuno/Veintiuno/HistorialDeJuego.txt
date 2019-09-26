@@ -1,0 +1,4 @@
+21 17 Ganada
+23 0 Perdida
+17 18 Perdida
+23 0 Perdida
